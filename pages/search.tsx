@@ -63,6 +63,28 @@ const Home: NextPage = () => {
 							router.push(`search/?query=${query}`)
 						}}
 					/>
+					<div className="flex md:hidden">
+						<p className="font-bold text-lg mt-2 mb-3 mr-8">Product type</p>
+						<select
+							className="rounded-full px-4 border-r-[16px] border-r-white"
+							onChange={(event) => {
+								const selectedProductType = productTypes.find((productType: ProductType) => {
+									return productType.value === event.target.value
+								})
+
+								setSelectedProductType(selectedProductType!)
+								setSearchQuery({ ...searchQuery, productType: selectedProductType! })
+							}}
+						>
+							{productTypes.map((productType: ProductType) => {
+								return (
+									<option key={productType.value} value={productType.value}>
+										{productType.label}
+									</option>
+								)
+							})}
+						</select>
+					</div>
 					<SearchResults query={searchQuery} />
 				</div>
 			</main>
