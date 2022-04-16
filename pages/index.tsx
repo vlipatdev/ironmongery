@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 import { Header } from '../components/Header'
+import { SearchBar } from '../components/SearchBar'
 
 const Home: NextPage = () => {
 	return (
@@ -16,7 +17,8 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Header />
-			<main className="bg-gray-100">
+			<SearchBar />
+			<main>
 				<h1 className={styles.title}>
 					Welcome to <a href="https://nextjs.org">Next.js!</a>
 				</h1>
