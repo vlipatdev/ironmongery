@@ -15,13 +15,20 @@ interface Props {
 const SearchBar = ({ onSearch, showLabel, isCenter, isOnHomePage }: Props) => {
 	const router = useRouter()
 	const query = router.query.query as string
-	const [searchQuery, setSearchQuery] = useState<string>(query)
+	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	useEffect(() => {
 		if (isOnHomePage) inputRef.current?.focus()
 	}, [])
+
+	useEffect(() => {
+		if (query) {
+			onSearch(query)
+			setSearchQuery(query)
+		}
+	}, [query])
 
 	const onInputChange = (event: React.SyntheticEvent) => {
 		const target = event.target as typeof event.target & {
