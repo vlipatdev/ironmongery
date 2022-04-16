@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Header />
-			<main className="flex px-36 gap-10 bg-gray-100 min-h-screen">
+			<main className="flex px-8 md:px-16 xl:px-24 2xl:px-36 gap-10 bg-gray-100 min-h-screen">
 				<SideBar
 					onProductTypeChange={(productType: ProductType) => {
 						setSearchQuery({ ...searchQuery, productType })

@@ -1,4 +1,7 @@
+import Image from 'next/image'
 import { useState } from 'react'
+
+import SearchIcon from '../public/search.svg'
 
 interface Props {
 	onSearch: (searchQuery: string) => void
@@ -36,9 +39,12 @@ export const SearchBar = ({ onSearch }: Props) => {
 						onClick={() => {
 							if (searchQuery) onSearch(searchQuery)
 						}}
-						className="h-full w-48 bg-golden-yellow font-semibold text-lg rounded-r-full"
+						className="h-full w-16 md:w-48 bg-golden-yellow font-semibold text-lg rounded-r-full"
 					>
-						Search
+						<p className="hidden md:block">Search</p>
+						<div className="md:hidden h-full flex justify-center items-center">
+							<Image src={SearchIcon} height={25} width={25} alt="Search Icon" />
+						</div>
 					</button>
 				</div>
 			</div>

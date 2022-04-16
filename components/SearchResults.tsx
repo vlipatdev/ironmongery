@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
+
 import { fetchProducts } from '../backend/api'
 import { Product, SearchQuery } from '../types'
+
 import { ProductListEntry } from './ProductListEntry'
 
 interface Props {
@@ -37,7 +39,7 @@ export const SearchResults = ({ query }: Props) => {
 	return (
 		<div>
 			<p className="font-bold text-lg mt-2 mb-3">Search results</p>
-			<div className="grid grid-cols-3 gap-4 pb-10">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-10">
 				{!isLoading &&
 					searchResults.length > 0 &&
 					searchResults.map((product: Product) => {
