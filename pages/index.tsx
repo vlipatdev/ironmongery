@@ -1,14 +1,19 @@
+import { useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
 
 import { Header } from '../components/Header'
 import { SearchBar } from '../components/SearchBar'
 import { SearchResults } from '../components/SearchResults'
 import { SideBar } from '../components/SideBar'
 
+import { ProductType, SearchQuery } from '../types'
+
 const Home: NextPage = () => {
-	const [searchQuery, setSearchQuery] = useState<string>('')
+	const [searchQuery, setSearchQuery] = useState<SearchQuery>({
+		product: '',
+		productType: { label: 'All', value: '' },
+	})
 
 	return (
 		<div>
@@ -22,11 +27,15 @@ const Home: NextPage = () => {
 			</Head>
 			<Header />
 			<main className="flex px-36 gap-10 bg-gray-100 min-h-screen">
-				<SideBar />
+				<SideBar
+					onProductTypeChange={(productType: ProductType) => {
+						setSearchQuery({ ...searchQuery, productType })
+					}}
+				/>
 				<div className="flex-1">
 					<SearchBar
 						onSearch={(query: string) => {
-							setSearchQuery(query)
+							setSearchQuery({ product: query, productType: { label: 'All', value: '' } })
 						}}
 					/>
 					<SearchResults query={searchQuery} />

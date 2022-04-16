@@ -1,16 +1,23 @@
 import { useState, useEffect } from 'react'
+
 import { ProductType } from '../types'
+import { getAvailableProductTypes } from '../backend/api'
 
-import { getAvailableProductTypes } from '../api'
+interface Props {
+	onProductTypeChange: (productType: ProductType) => void
+}
 
-export const SideBar = () => {
+export const SideBar = ({ onProductTypeChange }: Props) => {
 	const [productTypes, setProductTypes] = useState<ProductType[]>([])
-	const [selectedProductType, setSelectedProductType] = useState<ProductType>()
+	const [selectedProductType, setSelectedProductType] = useState<ProductType>({
+		label: 'All',
+		value: '',
+	})
 
 	useEffect(() => {
 		const getProductTypes = async () => {
 			const { productTypes } = await getAvailableProductTypes()
-			setProductTypes(productTypes as ProductType[])
+			setProductTypes([{ label: 'All', value: '' }, ...productTypes] as ProductType[])
 		}
 		getProductTypes()
 	}, [])
@@ -21,9 +28,21 @@ export const SideBar = () => {
 			<div className="rounded-xl border border-gray-300 bg-white px-4 py-6 w-56">
 				<p className="font-bold mb-4">Product types</p>
 				<ul className="leading-7">
-					<li className="font-black">All</li>
 					{productTypes.map((productType: ProductType) => {
-						return <li key={productType.label}>{productType.label}</li>
+						return (
+							<li
+								className={`cursor-pointer ${
+									selectedProductType.value === productType.value ? 'font-black' : ''
+								}`}
+								key={productType.label}
+								onClick={() => {
+									setSelectedProductType(productType)
+									onProductTypeChange(productType)
+								}}
+							>
+								{productType.label}
+							</li>
+						)
 					})}
 				</ul>
 			</div>
