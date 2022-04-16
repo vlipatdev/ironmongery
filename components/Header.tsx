@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import ironMongeryLogo from '../public/ironmongery_direct_logo.svg'
 
-export const Header = () => {
+const Header = () => {
 	return (
 		<header className="flex justify-center items-center h-[200px] md:h-[150px] bg-dark-gray relative">
 			<Link href="/" passHref>
@@ -17,3 +17,5 @@ export const Header = () => {
 		</header>
 	)
 }
+
+export default Header

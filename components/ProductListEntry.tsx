@@ -7,7 +7,7 @@ interface Props {
 	product: Product
 }
 
-export const ProductListEntry = ({ product }: Props) => {
+const ProductListEntry = ({ product }: Props) => {
 	const { title, imageURL, price } = product
 
 	return (
@@ -22,3 +22,5 @@ export const ProductListEntry = ({ product }: Props) => {
 		</div>
 	)
 }
+
+export default ProductListEntry

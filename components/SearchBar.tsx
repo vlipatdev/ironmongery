@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -6,16 +6,22 @@ import { useRouter } from 'next/router'
 import SearchIcon from '../public/search.svg'
 
 interface Props {
+	isOnHomePage?: boolean
 	onSearch: (searchQuery: string) => void
 	showLabel?: boolean
 	isCenter?: boolean
 }
 
-export const SearchBar = ({ onSearch, showLabel, isCenter }: Props) => {
+const SearchBar = ({ onSearch, showLabel, isCenter, isOnHomePage }: Props) => {
 	const router = useRouter()
 	const query = router.query.query as string
-
 	const [searchQuery, setSearchQuery] = useState<string>(query)
+
+	const inputRef = useRef<HTMLInputElement>(null)
+
+	useEffect(() => {
+		if (isOnHomePage) inputRef.current?.focus()
+	}, [])
 
 	const onInputChange = (event: React.SyntheticEvent) => {
 		const target = event.target as typeof event.target & {
@@ -30,18 +36,13 @@ export const SearchBar = ({ onSearch, showLabel, isCenter }: Props) => {
 		}
 	}
 
-	useEffect(() => {
-		if (query) {
-			onSearch(query)
-		}
-	}, [query])
-
 	return (
 		<div className={`flex flex-col justify-center ${isCenter ? 'items-center' : ''} w-full`}>
 			<div className="w-full max-w-6xl py-10">
 				{showLabel && <p className="font-bold text-lg mb-3 w-full">Search</p>}
 				<div className="h-12 flex">
 					<input
+						ref={inputRef}
 						className="h-full w-full rounded-l-full border border-gray-300 shadow-inner pl-4 text-lg"
 						type="search"
 						placeholder="Search for a product"
@@ -65,3 +66,5 @@ export const SearchBar = ({ onSearch, showLabel, isCenter }: Props) => {
 		</div>
 	)
 }
+
+export default SearchBar

@@ -1,27 +1,12 @@
-import { useState, useEffect } from 'react'
-
 import { ProductType } from '../types'
-import { getAvailableProductTypes } from '../backend/api'
 
 interface Props {
+	selectedProductType: ProductType
+	productTypes: ProductType[]
 	onProductTypeChange: (productType: ProductType) => void
 }
 
-export const SideBar = ({ onProductTypeChange }: Props) => {
-	const [productTypes, setProductTypes] = useState<ProductType[]>([])
-	const [selectedProductType, setSelectedProductType] = useState<ProductType>({
-		label: 'All',
-		value: '',
-	})
-
-	useEffect(() => {
-		const getProductTypes = async () => {
-			const { productTypes } = await getAvailableProductTypes()
-			setProductTypes([{ label: 'All', value: '' }, ...productTypes] as ProductType[])
-		}
-		getProductTypes()
-	}, [])
-
+const Filters = ({ productTypes, onProductTypeChange, selectedProductType }: Props) => {
 	return (
 		<aside className="h-full pt-44 hidden xl:block">
 			<p className="font-bold text-lg mb-3">Filters</p>
@@ -36,7 +21,6 @@ export const SideBar = ({ onProductTypeChange }: Props) => {
 								}`}
 								key={productType.label}
 								onClick={() => {
-									setSelectedProductType(productType)
 									onProductTypeChange(productType)
 								}}
 							>
@@ -49,3 +33,5 @@ export const SideBar = ({ onProductTypeChange }: Props) => {
 		</aside>
 	)
 }
+
+export default Filters
