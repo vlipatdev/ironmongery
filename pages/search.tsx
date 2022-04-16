@@ -63,7 +63,7 @@ const Home: NextPage = () => {
 							router.push(`search/?query=${query}`)
 						}}
 					/>
-					<div className="flex md:hidden">
+					<div className="flex xl:hidden">
 						<p className="font-bold text-lg mt-2 mb-3 mr-8">Product type</p>
 						<select
 							className="rounded-full px-4 border-r-[16px] bg-white border-r-white"
