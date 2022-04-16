@@ -66,7 +66,7 @@ const Home: NextPage = () => {
 					<div className="flex md:hidden">
 						<p className="font-bold text-lg mt-2 mb-3 mr-8">Product type</p>
 						<select
-							className="rounded-full px-4 border-r-[16px] border-r-white"
+							className="rounded-full px-4 border-r-[16px] bg-white border-r-white"
 							onChange={(event) => {
 								const selectedProductType = productTypes.find((productType: ProductType) => {
 									return productType.value === event.target.value
