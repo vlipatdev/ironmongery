@@ -1,19 +1,16 @@
-import { useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link'
 
-import { Header } from '../components/Header'
+import { useRouter } from 'next/router'
+
 import { SearchBar } from '../components/SearchBar'
-import { SearchResults } from '../components/SearchResults'
-import { SideBar } from '../components/SideBar'
 
-import { ProductType, SearchQuery } from '../types'
+import ironMongeryLogo from '../public/ironmongery_direct_logo.svg'
 
 const Home: NextPage = () => {
-	const [searchQuery, setSearchQuery] = useState<SearchQuery>({
-		product: '',
-		productType: { label: 'All', value: '' },
-	})
+	const router = useRouter()
 
 	return (
 		<div>
@@ -25,20 +22,21 @@ const Home: NextPage = () => {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Header />
-			<main className="flex px-8 md:px-16 xl:px-24 2xl:px-36 gap-10 bg-gray-100 min-h-screen">
-				<SideBar
-					onProductTypeChange={(productType: ProductType) => {
-						setSearchQuery({ ...searchQuery, productType })
-					}}
-				/>
-				<div className="flex-1">
+			<main className="flex flex-col justify-center items-center h-screen bg-dark-gray">
+				<Link href="/" passHref>
+					<a className="h-12 w-44 relative mb-10">
+						<Image src={ironMongeryLogo} alt="IronMongery Logo" layout="fill" objectFit="contain" />
+					</a>
+				</Link>
+				<p className="text-4xl lg:text-6xl font-bold text-golden-yellow">UK&apos;s Biggest Range</p>
+				<p className="text-4xl lg:text-6xl font-bold text-white">of Ironmongery</p>
+				<div className="w-10/12 md:w-8/12 max-w-[800px]">
 					<SearchBar
+						isCenter
 						onSearch={(query: string) => {
-							setSearchQuery({ product: query, productType: { label: 'All', value: '' } })
+							router.push(`/search?query=${query}`)
 						}}
 					/>
-					<SearchResults query={searchQuery} />
 				</div>
 			</main>
 		</div>
