@@ -75,6 +75,7 @@ const Home: NextPage = () => {
 								setSelectedProductType(selectedProductType!)
 								setSearchQuery({ ...searchQuery, productType: selectedProductType! })
 							}}
+							value={selectedProductType.value}
 						>
 							{productTypes.map((productType: ProductType) => {
 								return (
