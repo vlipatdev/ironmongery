@@ -2,15 +2,14 @@ import { useState, useEffect } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
-
 import { useRouter } from 'next/router'
 
 import { getAvailableProductTypes } from '../backend/api'
 
+import Filters from '../components/Filters'
 import Header from '../components/Header'
 import SearchBar from '../components/SearchBar'
 import SearchResults from '../components/SearchResults'
-import Filters from '../components/Filters'
 
 import { ProductType, SearchQuery } from '../types'
 

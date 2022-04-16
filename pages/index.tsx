@@ -30,7 +30,7 @@ const Home: NextPage = () => {
 				</Link>
 				<p className="text-4xl font-bold text-golden-yellow">UK&apos;s Biggest Range</p>
 				<p className="text-4xl font-bold text-white">of Ironmongery</p>
-				<div className="w-10/12 md:w-8/12 max-w-[800px]">
+				<div className="w-10/12 md:w-8/12 max-w-[800px] mb-20">
 					<SearchBar
 						isOnHomePage
 						isCenter
