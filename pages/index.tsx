@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 
 import { Header } from '../components/Header'
 import { SearchBar } from '../components/SearchBar'
+import { SearchResults } from '../components/SearchResults'
 import { SideBar } from '../components/SideBar'
 
 const Home: NextPage = () => {
@@ -22,6 +22,7 @@ const Home: NextPage = () => {
 				<SideBar />
 				<div className="flex-1">
 					<SearchBar />
+					<SearchResults />
 				</div>
 			</main>
 		</div>

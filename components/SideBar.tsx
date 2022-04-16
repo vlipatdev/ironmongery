@@ -13,7 +13,7 @@ export const SideBar = () => {
 			setProductTypes(productTypes as ProductType[])
 		}
 		getProductTypes()
-	})
+	}, [])
 
 	return (
 		<aside className="h-full pt-44">
@@ -21,7 +21,7 @@ export const SideBar = () => {
 			<div className="rounded-xl border border-gray-300 bg-white px-4 py-6 w-56">
 				<p className="font-bold mb-4">Product types</p>
 				<ul className="leading-7">
-					<li>All</li>
+					<li className="font-black">All</li>
 					{productTypes.map((productType: ProductType) => {
 						return <li key={productType.label}>{productType.label}</li>
 					})}
