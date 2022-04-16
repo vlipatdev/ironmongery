@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Product } from '../types'
 
-import { fixDecimal } from '../lib/fix-decimal'
+import { fixDecimal } from '../libs/fix-decimal'
 
 interface Props {
 	product: Product
