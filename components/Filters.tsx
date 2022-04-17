@@ -17,7 +17,7 @@ const Filters = ({ productTypes, selectedProductType, onProductTypeChange }: Pro
 						return (
 							<li
 								key={productType.value}
-								className={`cursor-pointer ${
+								className={`cursor-pointer hover:underline ${
 									selectedProductType.value === productType.value ? 'font-black' : ''
 								}`}
 								onClick={() => {
