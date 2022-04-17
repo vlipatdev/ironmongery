@@ -13,7 +13,7 @@ import SearchResults from '../components/SearchResults'
 
 import { ProductType, SearchQuery } from '../types'
 
-const Home: NextPage = () => {
+const Search: NextPage = () => {
 	const [productTypes, setProductTypes] = useState<ProductType[]>([])
 	const [searchQuery, setSearchQuery] = useState<SearchQuery>({ product: '' })
 
@@ -92,4 +92,4 @@ const Home: NextPage = () => {
 	)
 }
 
-export default Home
+export default Search
