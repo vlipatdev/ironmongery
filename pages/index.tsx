@@ -28,8 +28,8 @@ const Home: NextPage = () => {
 						<Image src={ironMongeryLogo} alt="IronMongery Logo" layout="fill" objectFit="contain" />
 					</a>
 				</Link>
-				<p className="text-4xl font-bold text-golden-yellow">UK&apos;s Biggest Range</p>
-				<p className="text-4xl font-bold text-white">of Ironmongery</p>
+				<p className="text-3xl md:text-4xl font-bold text-golden-yellow">UK&apos;s Biggest Range</p>
+				<p className="text-3xl md:text-4xl font-bold text-white">of Ironmongery</p>
 				<div className="w-10/12 md:w-8/12 max-w-[800px] mb-10 md:mb-20">
 					<SearchBar
 						isOnHomePage

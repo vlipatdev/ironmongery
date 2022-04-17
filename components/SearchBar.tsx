@@ -21,14 +21,11 @@ const SearchBar = ({ onSearch, showLabel, isCenter, isOnHomePage }: Props) => {
 
 	useEffect(() => {
 		if (isOnHomePage) inputRef.current?.focus()
-	}, [])
-
-	useEffect(() => {
 		if (query) {
 			onSearch(query)
 			setSearchQuery(query)
 		}
-	}, [query])
+	}, [])
 
 	const onInputChange = (event: React.SyntheticEvent) => {
 		const target = event.target as typeof event.target & {
