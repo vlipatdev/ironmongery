@@ -1,6 +1,6 @@
 # Product Search Tool
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). This project uses TypeScript and Tailwind CSS for styling.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). This project uses TypeScript and Tailwind CSS.
 
 ## Getting Started
 
@@ -29,13 +29,16 @@ An online demo of this application is available at [https://ironmongery.vercel.a
 ## Screenshots
 
 ### Desktop
+
 ![homepage-desktop](https://github.com/vlipatdev/ironmongery/blob/main/public/screenshots/homepage-desktop.png)  
-![searchpage-desktop](https://github.com/vlipatdev/ironmongery/blob/main/public/screenshots/searchpage-desktop.png)  
+![searchpage-desktop](https://github.com/vlipatdev/ironmongery/blob/main/public/screenshots/searchpage-desktop.png)
 
 ### Tablet
+
 ![homepage-tablet](https://github.com/vlipatdev/ironmongery/blob/main/public/screenshots/homepage-tablet.png)  
-![searchpage-tablet](https://github.com/vlipatdev/ironmongery/blob/main/public/screenshots/searchpage-tablet.png)  
+![searchpage-tablet](https://github.com/vlipatdev/ironmongery/blob/main/public/screenshots/searchpage-tablet.png)
 
 ### Mobile
+
 ![homepage-mobile](https://github.com/vlipatdev/ironmongery/blob/main/public/screenshots/homepage-mobile.png)  
-![searchpage-mobile](https://github.com/vlipatdev/ironmongery/blob/main/public/screenshots/searchpage-mobile.png)  
+![searchpage-mobile](https://github.com/vlipatdev/ironmongery/blob/main/public/screenshots/searchpage-mobile.png)
