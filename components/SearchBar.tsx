@@ -57,7 +57,7 @@ const SearchBar = ({ isOnHomePage, onSearch }: Props) => {
 						onClick={() => {
 							if (searchTerm) onSearch(searchTerm)
 						}}
-						className="h-full w-16 md:w-48 bg-golden-yellow font-semibold text-lg rounded-r-full"
+						className="h-full w-16 md:w-32 lg:w-48 bg-golden-yellow font-semibold text-lg rounded-r-full"
 					>
 						<p className="hidden md:block">Search</p>
 						<div className="md:hidden h-full flex justify-center items-center">
