@@ -1,12 +1,12 @@
 import { ProductType } from '../types'
 
 interface Props {
-	selectedProductType: ProductType
 	productTypes: ProductType[]
+	selectedProductType: ProductType
 	onProductTypeChange: (productType: ProductType) => void
 }
 
-const Filters = ({ productTypes, onProductTypeChange, selectedProductType }: Props) => {
+const Filters = ({ productTypes, selectedProductType, onProductTypeChange }: Props) => {
 	return (
 		<aside className="h-full pt-44 hidden xl:block">
 			<p className="font-bold text-lg mb-3">Filters</p>
@@ -16,10 +16,10 @@ const Filters = ({ productTypes, onProductTypeChange, selectedProductType }: Pro
 					{productTypes.map((productType: ProductType) => {
 						return (
 							<li
+								key={productType.value}
 								className={`cursor-pointer ${
 									selectedProductType.value === productType.value ? 'font-black' : ''
 								}`}
-								key={productType.label}
 								onClick={() => {
 									onProductTypeChange(productType)
 								}}

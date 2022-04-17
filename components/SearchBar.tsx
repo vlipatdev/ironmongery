@@ -7,43 +7,45 @@ import SearchIcon from '../public/search.svg'
 
 interface Props {
 	isOnHomePage?: boolean
-	onSearch: (searchQuery: string) => void
-	showLabel?: boolean
-	isCenter?: boolean
+	onSearch: (searchTerm: string) => void
 }
 
-const SearchBar = ({ onSearch, showLabel, isCenter, isOnHomePage }: Props) => {
+const SearchBar = ({ isOnHomePage, onSearch }: Props) => {
+	const [searchTerm, setSearchTerm] = useState<string>('')
+
 	const router = useRouter()
 	const query = router.query.query as string
-	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	useEffect(() => {
 		if (isOnHomePage) inputRef.current?.focus()
+	}, [])
+
+	useEffect(() => {
 		if (query) {
 			onSearch(query)
-			setSearchQuery(query)
+			setSearchTerm(query)
 		}
-	}, [])
+	}, [query])
 
 	const onInputChange = (event: React.SyntheticEvent) => {
 		const target = event.target as typeof event.target & {
 			value: string
 		}
-		setSearchQuery(target.value)
+		setSearchTerm(target.value)
 	}
 
 	const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		if (event.key === 'Enter' && searchQuery) {
-			onSearch(searchQuery)
+		if (event.key === 'Enter' && searchTerm) {
+			onSearch(searchTerm)
 		}
 	}
 
 	return (
-		<div className={`flex flex-col justify-center ${isCenter ? 'items-center' : ''} w-full`}>
+		<div className={`flex flex-col justify-center ${isOnHomePage ? 'items-center' : ''} w-full`}>
 			<div className="w-full max-w-6xl py-10">
-				{showLabel && <p className="font-bold text-lg mb-3 w-full">Search</p>}
+				{!isOnHomePage && <p className="font-bold text-lg mb-3 w-full">Search</p>}
 				<div className="h-12 flex">
 					<input
 						ref={inputRef}
@@ -52,11 +54,11 @@ const SearchBar = ({ onSearch, showLabel, isCenter, isOnHomePage }: Props) => {
 						placeholder="Search for a product"
 						onChange={onInputChange}
 						onKeyDown={onInputKeyDown}
-						value={searchQuery}
-					></input>
+						value={searchTerm}
+					/>
 					<button
 						onClick={() => {
-							if (searchQuery) onSearch(searchQuery)
+							if (searchTerm) onSearch(searchTerm)
 						}}
 						className="h-full w-16 md:w-48 bg-golden-yellow font-semibold text-lg rounded-r-full"
 					>

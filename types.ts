@@ -13,5 +13,5 @@ export interface ProductType {
 
 export interface SearchQuery {
 	product: string
-	productType: ProductType
+	productType?: string
 }

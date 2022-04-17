@@ -14,21 +14,22 @@ import SearchResults from '../components/SearchResults'
 import { ProductType, SearchQuery } from '../types'
 
 const Home: NextPage = () => {
-	const router = useRouter()
-	const [selectedProductType, setSelectedProductType] = useState<ProductType>({
-		label: 'All',
-		value: '',
-	})
 	const [productTypes, setProductTypes] = useState<ProductType[]>([])
-	const [searchQuery, setSearchQuery] = useState<SearchQuery>({
-		product: (router.query.query as string) || '',
-		productType: { label: 'All', value: '' },
-	})
+	const [searchQuery, setSearchQuery] = useState<SearchQuery>({ product: '' })
+
+	const defaultProductType: ProductType = { label: 'All', value: '' }
+	const [selectedProductType, setSelectedProductType] = useState<ProductType>(defaultProductType)
+
+	const router = useRouter()
 
 	useEffect(() => {
 		const getProductTypes = async () => {
-			const { productTypes } = await getAvailableProductTypes()
-			setProductTypes([{ label: 'All', value: '' }, ...productTypes] as ProductType[])
+			try {
+				const { productTypes } = await getAvailableProductTypes()
+				setProductTypes([defaultProductType, ...productTypes] as ProductType[])
+			} catch (err) {
+				setProductTypes([defaultProductType])
+			}
 		}
 		getProductTypes()
 	}, [])
@@ -36,7 +37,7 @@ const Home: NextPage = () => {
 	return (
 		<div>
 			<Head>
-				<title>IronmongeryDirect | UK’s Biggest Range | Same Day Despatch</title>
+				<title>Product Search | IronmongeryDirect</title>
 				<meta
 					name="description"
 					content="Buy Door Furniture, Hinges and more from the UK's Largest Ironmongery Range. Available with Same Day Despatch & Free Returns as Standard, all great Trade Prices."
@@ -49,17 +50,16 @@ const Home: NextPage = () => {
 					selectedProductType={selectedProductType}
 					productTypes={productTypes}
 					onProductTypeChange={(productType: ProductType) => {
-						setSearchQuery({ ...searchQuery, productType })
+						setSearchQuery({ ...searchQuery, productType: productType.value })
 						setSelectedProductType(productType)
 					}}
 				/>
 				<div className="flex-1">
 					<SearchBar
-						showLabel
-						onSearch={(query: string) => {
-							setSearchQuery({ product: query, productType: { label: 'All', value: '' } })
-							setSelectedProductType({ label: 'All', value: '' })
-							router.push(`search/?query=${query}`)
+						onSearch={(searchTerm: string) => {
+							setSearchQuery({ product: searchTerm.trim() })
+							setSelectedProductType(defaultProductType)
+							router.push(`search/?query=${searchTerm}`)
 						}}
 					/>
 					<div className="flex xl:hidden">
@@ -67,12 +67,8 @@ const Home: NextPage = () => {
 						<select
 							className="rounded-full px-4 border-r-[16px] bg-white border-r-white"
 							onChange={(event) => {
-								const selectedProductType = productTypes.find((productType: ProductType) => {
-									return productType.value === event.target.value
-								})
-
 								setSelectedProductType(selectedProductType!)
-								setSearchQuery({ ...searchQuery, productType: selectedProductType! })
+								setSearchQuery({ ...searchQuery, productType: event.target.value })
 							}}
 							value={selectedProductType.value}
 						>
@@ -85,7 +81,7 @@ const Home: NextPage = () => {
 							})}
 						</select>
 					</div>
-					<SearchResults query={searchQuery} />
+					<SearchResults searchQuery={searchQuery} />
 				</div>
 			</main>
 		</div>

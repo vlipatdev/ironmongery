@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-
 import { useRouter } from 'next/router'
 
 import SearchBar from '../components/SearchBar'
@@ -33,9 +32,8 @@ const Home: NextPage = () => {
 				<div className="w-10/12 md:w-8/12 max-w-[800px] mb-10 md:mb-20">
 					<SearchBar
 						isOnHomePage
-						isCenter
-						onSearch={(query: string) => {
-							router.push(`/search?query=${query}`)
+						onSearch={(searchTerm: string) => {
+							router.push(`/search?query=${searchTerm}`)
 						}}
 					/>
 				</div>
