@@ -67,8 +67,12 @@ const Home: NextPage = () => {
 						<select
 							className="rounded-full px-4 border-r-[16px] bg-white border-r-white"
 							onChange={(event) => {
+								const selectedProductType = productTypes.find((productType: ProductType) => {
+									return productType.value === event.target.value
+								})
+
 								setSelectedProductType(selectedProductType!)
-								setSearchQuery({ ...searchQuery, productType: event.target.value })
+								setSearchQuery({ ...searchQuery, productType: selectedProductType?.value })
 							}}
 							value={selectedProductType.value}
 						>
