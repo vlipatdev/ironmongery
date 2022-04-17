@@ -14,22 +14,17 @@ import SearchResults from '../components/SearchResults'
 import { ProductType, SearchQuery } from '../types'
 
 const Search: NextPage = () => {
-	const [productTypes, setProductTypes] = useState<ProductType[]>([])
-	const [searchQuery, setSearchQuery] = useState<SearchQuery>({ product: '' })
-
 	const defaultProductType: ProductType = { label: 'All', value: '' }
+	const [productTypes, setProductTypes] = useState<ProductType[]>([defaultProductType])
+	const [searchQuery, setSearchQuery] = useState<SearchQuery>({ product: '' })
 	const [selectedProductType, setSelectedProductType] = useState<ProductType>(defaultProductType)
 
 	const router = useRouter()
 
 	useEffect(() => {
 		const getProductTypes = async () => {
-			try {
-				const { productTypes } = await getAvailableProductTypes()
-				setProductTypes([defaultProductType, ...productTypes] as ProductType[])
-			} catch (err) {
-				setProductTypes([defaultProductType])
-			}
+			const { productTypes } = await getAvailableProductTypes()
+			setProductTypes([defaultProductType, ...productTypes] as ProductType[])
 		}
 		getProductTypes()
 	}, [])
