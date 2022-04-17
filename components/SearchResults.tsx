@@ -40,7 +40,7 @@ const SearchResults = ({ searchQuery }: Props) => {
 
 	return (
 		<div>
-			<p className="font-bold text-lg mt-2 mb-3">Search results</p>
+			<p className="font-bold text-sm md:text-lg mt-2 mb-3">Search results</p>
 			{isLoading && (
 				<div className="w-full flex justify-center mt-10">
 					<ReactLoading type="spin" color="#EDA750" height={40} width={40} />

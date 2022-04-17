@@ -45,7 +45,7 @@ const SearchBar = ({ isOnHomePage, onSearch }: Props) => {
 	return (
 		<div className={`flex flex-col justify-center ${isOnHomePage ? 'items-center' : ''} w-full`}>
 			<div className="w-full max-w-6xl py-10">
-				{!isOnHomePage && <p className="font-bold text-lg mb-3 w-full">Search</p>}
+				{!isOnHomePage && <p className="font-bold text-sm md:text-lg mb-3 w-full">Search</p>}
 				<div className="h-12 flex">
 					<input
 						ref={inputRef}

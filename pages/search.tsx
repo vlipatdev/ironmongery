@@ -62,10 +62,10 @@ const Search: NextPage = () => {
 							router.push(`search/?query=${searchTerm}`)
 						}}
 					/>
-					<div className="flex xl:hidden">
-						<p className="font-bold text-lg mt-2 mb-3 mr-8">Product type</p>
+					<div className="flex items-center xl:hidden">
+						<p className="font-bold text-sm md:text-lg mt-2 mb-3 mr-8">Product type</p>
 						<select
-							className="rounded-full px-4 border-r-[16px] bg-white border-r-white"
+							className="h-12 rounded-full px-4 border-r-[16px] bg-white border-r-white"
 							onChange={(event) => {
 								const selectedProductType = productTypes.find((productType: ProductType) => {
 									return productType.value === event.target.value
