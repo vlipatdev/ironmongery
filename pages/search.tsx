@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -34,6 +34,21 @@ const Search: NextPage = () => {
 		getProductTypes()
 	}, [])
 
+	const onSearch = (searchTerm: string) => {
+		setSearchQuery({ product: searchTerm.trim() })
+		setSelectedProductType(defaultProductType)
+		router.push(`search/?query=${searchTerm}`)
+	}
+
+	const onSelectOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		const selectedProductType = productTypes.find((productType: ProductType) => {
+			return productType.value === event.target.value
+		})
+
+		setSelectedProductType(selectedProductType!)
+		setSearchQuery({ ...searchQuery, productType: selectedProductType?.value })
+	}
+
 	return (
 		<div>
 			<Head>
@@ -57,22 +72,15 @@ const Search: NextPage = () => {
 				<div className="flex-1">
 					<SearchBar
 						onSearch={(searchTerm: string) => {
-							setSearchQuery({ product: searchTerm.trim() })
-							setSelectedProductType(defaultProductType)
-							router.push(`search/?query=${searchTerm}`)
+							onSearch(searchTerm)
 						}}
 					/>
 					<div className="flex items-center xl:hidden">
 						<p className="font-bold text-sm md:text-lg mt-2 mb-3 mr-8">Product type</p>
 						<select
 							className="h-12 rounded-full px-4 border-r-[16px] bg-white border-r-white"
-							onChange={(event) => {
-								const selectedProductType = productTypes.find((productType: ProductType) => {
-									return productType.value === event.target.value
-								})
-
-								setSelectedProductType(selectedProductType!)
-								setSearchQuery({ ...searchQuery, productType: selectedProductType?.value })
+							onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+								onSelectOptionChange(event)
 							}}
 							value={selectedProductType.value}
 						>

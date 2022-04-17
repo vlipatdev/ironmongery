@@ -29,11 +29,8 @@ const SearchBar = ({ isOnHomePage, onSearch }: Props) => {
 		}
 	}, [query])
 
-	const onInputChange = (event: React.SyntheticEvent) => {
-		const target = event.target as typeof event.target & {
-			value: string
-		}
-		setSearchTerm(target.value)
+	const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchTerm(event.target.value)
 	}
 
 	const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {

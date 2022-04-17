@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 import SearchBar from '../components/SearchBar'
 
-import ironMongeryLogo from '../public/ironmongery_direct_logo.svg'
+import IronMongeryLogo from '../public/ironmongery_direct_logo.svg'
 
 const Home: NextPage = () => {
 	const router = useRouter()
@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 			<main className="flex flex-col justify-center items-center h-screen bg-homepage bg-cover">
 				<Link href="/" passHref>
 					<a className="h-12 w-44 relative mb-10">
-						<Image src={ironMongeryLogo} alt="IronMongery Logo" layout="fill" objectFit="contain" />
+						<Image src={IronMongeryLogo} alt="IronMongery Logo" layout="fill" objectFit="contain" />
 					</a>
 				</Link>
 				<p className="text-3xl md:text-4xl font-bold text-golden-yellow">UK&apos;s Biggest Range</p>
