@@ -21,6 +21,8 @@ const SearchResults = ({ searchQuery }: Props) => {
 			setIsLoading(true)
 			setErrorMessage('')
 
+			if (!searchQuery.productType) searchQuery.productType = undefined
+
 			try {
 				const { products } = await fetchProducts(searchQuery)
 				setSearchResults(products)
