@@ -3,6 +3,8 @@ import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
+import { isMobile } from 'react-device-detect'
+
 import SearchIcon from '../public/search.svg'
 
 interface Props {
@@ -19,7 +21,7 @@ const SearchBar = ({ isOnHomePage, onSearch }: Props) => {
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	useEffect(() => {
-		if (isOnHomePage) inputRef.current?.focus()
+		if (isOnHomePage && !isMobile) inputRef.current?.focus()
 	}, [])
 
 	useEffect(() => {
