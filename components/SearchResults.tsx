@@ -13,7 +13,7 @@ interface Props {
 
 const SearchResults = ({ searchQuery }: Props) => {
 	const [errorMessage, setErrorMessage] = useState<string>('')
-	const [isLoading, setIsLoading] = useState<boolean>(true)
+	const [isLoading, setIsLoading] = useState<boolean>(false)
 	const [searchResults, setSearchResults] = useState<Product[]>([])
 
 	useEffect(() => {
@@ -33,6 +33,7 @@ const SearchResults = ({ searchQuery }: Props) => {
 				setIsLoading(false)
 			}
 		}
+
 		if (searchQuery.product) {
 			getProducts(searchQuery)
 		}
