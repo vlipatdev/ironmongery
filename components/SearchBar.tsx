@@ -25,8 +25,8 @@ const SearchBar = ({ isOnHomePage, onSearch }: Props) => {
 	}, [])
 
 	useEffect(() => {
-		if (query) {
-			onSearch(query)
+		if (query && !isOnHomePage) {
+			onSearch(query.trim())
 			setSearchTerm(query)
 		}
 	}, [query])
