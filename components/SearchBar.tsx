@@ -36,7 +36,7 @@ const SearchBar = ({ isOnHomePage, onSearch }: Props) => {
 	}
 
 	const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		if (event.key === 'Enter' && searchTerm) {
+		if (event.key === 'Enter' && searchTerm.trim() !== '') {
 			onSearch(searchTerm)
 		}
 	}
@@ -57,7 +57,7 @@ const SearchBar = ({ isOnHomePage, onSearch }: Props) => {
 					/>
 					<button
 						onClick={() => {
-							if (searchTerm) onSearch(searchTerm)
+							if (searchTerm.trim() !== '') onSearch(searchTerm)
 						}}
 						className="h-full w-16 md:w-32 lg:w-48 bg-golden-yellow font-semibold text-lg rounded-r-full"
 					>
